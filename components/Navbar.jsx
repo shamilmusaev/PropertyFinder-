@@ -29,10 +29,10 @@ const Navbar = () => {
     setAuthProviders();
   }, []);
 
-   // Закрытие меню профиля по клику вне его
+   // Закрытие меню профиля по клику вне профиля меню
    useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (!event.target.closest("#profile-menu-button") && isProfileMenuOpen) {
+      if (!event.target.closest("#user-menu") && isProfileMenuOpen) {
         setIsProfileMenuOpen(false);
       }
     };
