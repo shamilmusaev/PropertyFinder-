@@ -18,6 +18,8 @@ export const GET = async (request) => {
   }
 };
 
+
+//POST /api/properties
 export const POST = async (request) => {
   try {
     await connectDB();
