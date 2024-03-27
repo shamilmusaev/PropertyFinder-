@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 const PropertyDetails = ({ property }) => {
+  console.log(property)
   return (
     <main>
       <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">

@@ -8,7 +8,7 @@ export const GET = async (request) => {
     await connectDB();
 
     const properties = await Property.find({});
-   console.log(properties);
+  
 
     return Response.json(properties);
   } catch (error) {

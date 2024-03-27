@@ -1,3 +1,5 @@
+// Компонент который будет показываться на главной странице с ограниченными результатами 
+
 import Image from "next/image";
 import Link from "next/link";
 import {FaBed, FaBath, FaRulerCombined, FaMoneyBill, FaMapMarker} from 'react-icons/fa'
@@ -13,6 +15,8 @@ const PropertyCard = ({ property }) => {
     } else if (rates.nightly) {
       return `${rates.night.toLocaleString()}/night`;
     }
+
+    
   };
   return (
     <div className="rounded-xl shadow-md relative">
@@ -75,7 +79,7 @@ const PropertyCard = ({ property }) => {
           <FaMapMarker className="text-orange-700 mt-1"/>
             <span className="text-orange-700">
               {" "}
-              {property.location.city} {property.location.state}
+              {property.location.city}, {property.location.state}
             </span>
           </div>
           <a
