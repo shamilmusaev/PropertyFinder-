@@ -1,3 +1,5 @@
+// Компонент с формой добавления апартмента
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -5,26 +7,26 @@ import { useState, useEffect } from "react";
 const ProperyAddForm = () => {
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState({
-    type: "Apartment",
-    name: "Test Property",
+    type: "",
+    name: "",
     description: "",
     location: {
       street: "",
-      city: "Test City",
-      state: "Test State",
+      city: "",
+      state: "",
       zipcode: "",
     },
-    beds: 2,
-    baths: 1,
-    square_feet: 1500,
-    amenities: ["Free Parking", "Wifi"],
+    beds: '',
+    baths: '',
+    square_feet: '',
+    amenities: [],
     rates: {
-      weekly: 1100,
-      monthly: 4200,
+      weekly: '',
+      monthly: '',
     },
     seller_info: {
       name: "",
-      email: "test@gmail.com",
+      email: "",
       phone: "",
     },
     images: [],
@@ -57,52 +59,56 @@ const ProperyAddForm = () => {
     }
   };
   const handleAmenitiesChange = (e) => {
-    const {value, checked} = e.target;
+    const { value, checked } = e.target;
 
     // Clone the current array
 
-    const updatedAmenities = [...fields.amenities]
+    const updatedAmenities = [...fields.amenities];
 
-    if(checked) {
-       // Add value to array
-       updatedAmenities.push(value)
+    if (checked) {
+      // Add value to array
+      updatedAmenities.push(value);
     } else {
-        // Remove value from array
-        const index = updatedAmenities.indexOf(value)
+      // Remove value from array
+      const index = updatedAmenities.indexOf(value);
 
-        if(index !== -1) {
-           updatedAmenities.splice(index, 1)
-        } 
+      if (index !== -1) {
+        updatedAmenities.splice(index, 1);
+      }
     }
-
 
     // Update state with updated array
-   setFields((prevFields) => ({
-    ...prevFields,
-    amenities : updatedAmenities,
-   }))
+    setFields((prevFields) => ({
+      ...prevFields,
+      amenities: updatedAmenities,
+    }));
   };
   const handleImageChange = (e) => {
-    const { files } = e.target 
-    
-    // Clone images array
-    const updatedImages = [...fields.images]
+    const { files } = e.target;
 
-    // Add new files to the array 
-    for(const file of files) {
-        updatedImages.push(file)
+    // Clone images array
+    const updatedImages = [...fields.images];
+
+    // Add new files to the array
+    for (const file of files) {
+      updatedImages.push(file);
     }
 
-    //Update state with array of images 
+    //Update state with array of images
     setFields((prevFields) => ({
-        ...prevFields,
-        images: updatedImages
-    }))
+      ...prevFields,
+      images: updatedImages,
+    }));
   };
 
   return (
     mounted && (
-      <form>
+      // encType="multipart/form-data" нужно для изображений
+      <form
+        action="/api/properties"
+        method="POST"
+        encType="multipart/form-data"
+      >
         <h2 className="text-3xl text-center font-semibold mb-6">
           Add Property
         </h2>
@@ -506,7 +512,7 @@ const ProperyAddForm = () => {
           <input
             type="text"
             id="seller_name"
-            name="seller_info.name."
+            name="seller_info.name"
             className="border rounded w-full py-2 px-3"
             placeholder="Name"
             value={fields.seller_info.name}
@@ -564,6 +570,7 @@ const ProperyAddForm = () => {
             accept="image/*"
             multiple
             onChange={handleImageChange}
+            required
           />
         </div>
 

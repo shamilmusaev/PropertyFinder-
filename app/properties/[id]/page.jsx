@@ -8,6 +8,7 @@ import Link from "next/link";
 import PropertyDetails from "@/components/PropertyDetails";
 import Spinner from "@/components/Spinner";
 import {FaArrowLeft} from 'react-icons/fa'
+import PropertyImages from "@/components/PropertyImages";
 
 // Компонент страницы для отображения свойства по его идентификатору.
 // При загрузке страницы выполняется асинхронный запрос к API для получения данных о свойстве.
@@ -156,6 +157,7 @@ const PropertyPage = () => {
               </div>
             </div>
           </section>
+          <PropertyImages images={property.images} />
         </>
       )}
     </>
