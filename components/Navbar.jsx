@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logo-white.png";
@@ -222,7 +223,8 @@ const Navbar = () => {
                     <button
                     onClick={() => {
                       setIsProfileMenuOpen(false)
-                      signOut()
+                      signOut({ redirect: true, callbackUrl: '/' })
+                      
                     }}
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
